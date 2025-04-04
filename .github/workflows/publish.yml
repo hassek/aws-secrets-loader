@@ -1,0 +1,35 @@
+name: Publish To Internal PyPI
+
+on:
+  workflow_dispatch:
+    inputs:
+      repository:
+        description: Publish to "pypi-internal-test" or "pypi-internal"
+        required: true
+        default: pypi-internal-test
+
+jobs:
+  publish:
+    name: Publish to internal PyPI
+    runs-on: self-hosted
+    steps:
+      - name: Checkout main branch
+        uses: actions/checkout
+
+      - name: Set up Python 3.12
+        uses: actions/setup-python@v4
+        with:
+          python-version: 3.12
+
+      - name: Install Poetry
+        working-directory: ./../..
+        run: |
+          python -m pip install --upgrade pip poetry
+          poetry config repositories.pypi-internal https://nexus2.corp.ebates.com/repository/pypi-internal/
+          poetry config repositories.pypi-internal-test https://nexus2.corp.ebates.com/repository/pypi-internal-test/
+
+      - name: Build with Poetry
+        run: poetry build
+
+      - name: Publish with Poetry
+        run: poetry publish --repository ${{ github.event.inputs.repository }} --username ${{ secrets.NEXUS_USER }} --password ${{ secrets.NEXUS_PASSWORD }}

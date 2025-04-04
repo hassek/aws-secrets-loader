@@ -1,0 +1,6 @@
+#!/bin/sh
+
+set -e
+
+# Setup the way we want to run tests here
+pytest "$@" --cov-config=setup.cfg --cov-report html --cov-report xml:coverage.xml --capture=sys --cov=aws_secrets_loader/ .
