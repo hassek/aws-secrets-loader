@@ -1,0 +1,12 @@
+[
+    {
+        "ENV_VAR_FOR_AWS_SECRET_NAME": "DATABASE_SECRET_NAME",
+        "PREFIX_FOR_ENV_VAR_NAME": "DATABASE",
+        "SECRET_KEYS": ["USER", "PASSWORD"]
+    },
+    {
+        "ENV_VAR_FOR_AWS_SECRET_NAME": "API_SECRET_NAME",
+        "PREFIX_FOR_ENV_VAR_NAME": "API",
+        "SECRET_KEYS": ["KEY", "SECRET"]
+    }
+]

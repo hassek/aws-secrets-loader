@@ -1,0 +1,32 @@
+name: Publish To Internal PyPI
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  publish:
+    name: Publish to internal PyPI
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout main branch
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          token: ${{ github.token }}
+
+      - name: Set up Python 3.12
+        uses: actions/setup-python@v4
+        with:
+          python-version: 3.12
+
+      - name: Install Poetry
+        working-directory: ./../..
+        run: python -m pip install --upgrade pip poetry
+
+      - name: Build with Poetry
+        run: poetry build
+
+      - name: Publish with Poetry
+        run: poetry publish -u ${{ secrets.NEXUS_USER }} -p ${{ secrets.NEXUS_PASSWORD }}
