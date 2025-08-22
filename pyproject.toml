@@ -3,12 +3,12 @@ line-length = 119
 
 [tool.commitizen]
 name = "cz_conventional_commits"
-version = "0.1.0"
+version = "0.1.1"
 tag_format = "v$version"
 
 [tool.poetry]
 name = "aws-secrets-loader"
-version = "0.1.0"
+version = "0.1.1"
 description = ""
 authors = [
     "Alejandro Socorro <alejandro.socorro@rakuten.com>",
