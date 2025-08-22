@@ -50,7 +50,7 @@ The example above would result in two new environment variables being set:
 
 # Development
 ### Pre-commit
-A script runner before you commit changes, this will save many red alerts happening over a CI and can warn you on problems you skipped.
+A script runner before you commit changes, this will save many red alerts happening over a CI and can warn you on problems you skipped!
 
 As an example We:
 * Don't let developers commit directly on master,staging or QA branches.
